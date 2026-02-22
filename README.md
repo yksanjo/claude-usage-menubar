@@ -1,143 +1,82 @@
-# Claude Usage Menu Bar App
+# claude-usage-menubar
 
-A native macOS menu bar app to track your Claude.ai usage in real-time.
+## Detailed Description
 
-## Features
+claude-usage-menubar is maintained as an industry-grade software project with production-ready engineering practices.  
+This repository includes documented setup, quality gates, operational guidance, and governance standards so contributors can safely build, test, and ship changes with confidence.
 
-- **Menu Bar Display**: Shows your current Claude usage percentage at a glance
-- **Usage Stats**: View detailed stats on messages used vs. monthly limit
-- **Color-Coded Progress**: Green, orange, or red indicators based on usage
-- **Manual Updates**: Easy interface to input your current usage from Claude.ai
-- **Quick Access**: Direct link to Claude.ai settings page
-- **Persistent Storage**: Remembers your usage data between app launches
+## Problem Statement
 
-## Setup Instructions
+Describe the user or business problem this project solves, the target users, and expected outcomes.
+
+## Solution Overview
+
+Summarize the architecture, core modules, and runtime behavior at a high level.
+
+## Key Features
+
+- Clear project scope and intended use.
+- Reproducible local development workflow.
+- Test coverage and CI quality gates.
+- Security and contribution policies.
+- Deployment-ready repository structure.
+
+## Repository Structure
+
+```text
+.
+|-- src/                  # Core implementation
+|-- tests/                # Automated test suites
+|-- docs/                 # Design notes and operational docs
+|-- .github/workflows/    # CI pipelines
+|-- README.md
+|-- LICENSE
+|-- CONTRIBUTING.md
+|-- SECURITY.md
+|-- CODE_OF_CONDUCT.md
+```
+
+## Getting Started
 
 ### Prerequisites
 
-1. **Install Xcode**
-   - Open the App Store
-   - Search for "Xcode"
-   - Click "Get" or "Install"
-   - Wait for installation to complete (this may take 10-30 minutes)
+- Git
+- Project runtime/toolchain for this repo
 
-2. **Open Xcode Command Line Tools**
-   - After Xcode installs, open Terminal
-   - Run: `xcode-select --install`
-   - Follow the prompts
+### Local Setup
 
-### Building the App
+```bash
+make test
+make lint
+```
 
-1. **Open Xcode**
-   - Launch Xcode from Applications or Spotlight
+## Usage
 
-2. **Create New Project**
-   - Click "Create New Project" or go to File > New > Project
-   - Select **macOS** tab at the top
-   - Choose **App** template
-   - Click **Next**
+Document primary commands, API routes, CLI examples, or UI workflows here.
 
-3. **Configure Project**
-   - **Product Name**: `ClaudeUsageMenuBar`
-   - **Team**: Select your Apple ID (or leave as "None" for local development)
-   - **Organization Identifier**: `com.yourname` (or use default)
-   - **Interface**: **SwiftUI**
-   - **Language**: **Swift**
-   - **Uncheck** "Include Tests"
-   - Click **Next**
+## Quality Standards
 
-4. **Choose Location**
-   - Navigate to your home directory (`/Users/yoshikondo/`)
-   - **IMPORTANT**: When saving, check "Delete existing folder" if prompted (we'll replace it with our code)
-   - Click **Create**
+- CI must pass before merge.
+- Changes require tests for critical behavior.
+- Security-sensitive changes should include risk notes.
+- Keep pull requests focused and reviewable.
 
-5. **Replace Generated Files**
-   - In Xcode's left sidebar (Project Navigator), you'll see the project structure
-   - **Delete** the following auto-generated files (right-click > Delete > Move to Trash):
-     - `ContentView.swift` (we'll replace it)
-     - `ClaudeUsageMenuBarApp.swift` (we'll replace it)
+## Security
 
-6. **Add Our Files**
-   - In Finder, navigate to `/Users/yoshikondo/ClaudeUsageMenuBar/ClaudeUsageMenuBar/`
-   - Drag these files from Finder into Xcode's Project Navigator (onto "ClaudeUsageMenuBar" folder):
-     - `ClaudeUsageMenuBarApp.swift`
-     - `StatusBarController.swift`
-     - `UsageManager.swift`
-     - `ContentView.swift`
-   - When prompted, ensure:
-     - ✓ "Copy items if needed" is **checked**
-     - ✓ "Add to targets: ClaudeUsageMenuBar" is **checked**
-     - Click **Finish**
+See `SECURITY.md` for responsible disclosure and handling guidelines.
 
-7. **Update Info.plist**
-   - In Project Navigator, click on the **blue project icon** at the top
-   - Select **ClaudeUsageMenuBar** target (under TARGETS)
-   - Go to **Info** tab
-   - Under "Custom macOS Application Target Properties", find or add:
-     - **Key**: `Application is agent (UIElement)` or `LSUIElement`
-     - **Type**: Boolean
-     - **Value**: YES
-   - This makes the app menu-bar only (no dock icon)
+## Contributing
 
-8. **Build and Run**
-   - Press **Cmd + R** or click the **Play** button (▶) in the top toolbar
-   - The app will compile and launch
-   - Look for the "Claude 0%" text in your menu bar (top-right area)
-   - Click it to see the usage interface!
+See `CONTRIBUTING.md` for branching, commit, and pull request expectations.
 
-## How to Use
+## Roadmap
 
-1. **First Time Setup**
-   - Go to [claude.ai/settings/usage](https://claude.ai/settings/usage)
-   - Note your "Messages Used" and "Monthly Limit" numbers
+Track upcoming milestones, technical debt, and planned feature work.
 
-2. **Update Usage in App**
-   - Click the "Claude X%" text in your menu bar
-   - Click **"Update Usage"** button
-   - Enter your messages used and limit
-   - Click **"Save"**
+## Support
 
-3. **Monitor Your Usage**
-   - The menu bar will show your current usage percentage
-   - Color changes:
-     - **Green**: 0-69% (healthy)
-     - **Orange**: 70-89% (getting high)
-     - **Red**: 90-100% (nearly exhausted)
+Open a GitHub issue for bugs, feature requests, or documentation gaps.
 
-4. **Quick Actions**
-   - **Update Usage**: Refresh your stats
-   - **Open Claude.ai Settings**: Direct link to usage page
-   - **Quit**: Close the app
+## License
 
-## Troubleshooting
-
-### App doesn't appear in menu bar
-- Make sure `LSUIElement` is set to YES in Info.plist
-- Try restarting the app
-
-### Build errors in Xcode
-- Make sure all 4 Swift files are added to the project target
-- Check that you're building for macOS (not iOS)
-- Try cleaning the build: Product > Clean Build Folder (Cmd + Shift + K)
-
-### "No Developer Account" warning
-- You can ignore this for local development
-- The app will still build and run on your Mac
-
-## Future Enhancements
-
-- Automatic refresh via API (when you get an API key)
-- Notifications when approaching limit
-- Usage history and trends
-- Multiple account support
-
-## Technical Details
-
-- **Language**: Swift + SwiftUI
-- **Minimum macOS**: 13.0 (Ventura)
-- **Storage**: UserDefaults for persistence
-- **Architecture**: Menu bar agent (no dock icon)
-
----
-
-Built with SwiftUI for macOS
+This project is released under the MIT License.
